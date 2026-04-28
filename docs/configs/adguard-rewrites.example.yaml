@@ -1,0 +1,28 @@
+# AdGuard Home — DNS rewrites for d2.lol split-horizon
+# Paste into AdGuard's Filters → DNS rewrites (or place in AdGuardHome.yaml under `dns.rewrites:`).
+rewrites:
+  - domain: fw.d2.lol
+    answer: 10.10.10.1
+  - domain: sw1.d2.lol
+    answer: 10.10.10.2
+  - domain: hex.d2.lol
+    answer: 10.10.10.3
+  - domain: sw10g.d2.lol
+    answer: 10.10.10.4
+  - domain: mhv.d2.lol
+    answer: 10.10.20.10
+  - domain: plex.d2.lol
+    answer: 10.10.20.11
+  - domain: nuc.d2.lol
+    answer: 10.10.20.12
+  - domain: g4.d2.lol
+    answer: 10.10.20.13
+  - domain: nas.d2.lol
+    answer: 10.10.20.20
+  - domain: wgr.d2.lol
+    answer: 10.10.20.50
+  - domain: vpn-ct.d2.lol
+    answer: 10.10.60.60
+  # Convenience wildcard for *.lab.d2.lol pointing into the test sandbox
+  - domain: '*.lab.d2.lol'
+    answer: 10.10.50.1

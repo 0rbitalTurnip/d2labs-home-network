@@ -1,0 +1,27 @@
+{
+  "tagOwners": {
+    "tag:admin":  ["autogroup:admin"],
+    "tag:user":   ["autogroup:admin"],
+    "tag:exit":   ["autogroup:admin"],
+    "tag:server": ["autogroup:admin"]
+  },
+
+  "acls": [
+    { "action": "accept", "src": ["tag:admin"],  "dst": ["*:*"] },
+    { "action": "accept", "src": ["tag:user"],   "dst": ["10.10.20.0/24:*"] },
+    { "action": "accept", "src": ["tag:server"], "dst": ["tag:server:*"] }
+  ],
+
+  "ssh": [
+    {
+      "action": "check",
+      "src":    ["tag:admin"],
+      "dst":    ["tag:server"],
+      "users":  ["root", "autogroup:nonroot"]
+    }
+  ],
+
+  "nodeAttrs": [
+    { "target": ["tag:server"], "attr": ["funnel"] }
+  ]
+}

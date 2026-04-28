@@ -1,0 +1,31 @@
+# OS
+.DS_Store
+Thumbs.db
+
+# Editors
+.vscode/
+.idea/
+*.swp
+*~
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Build artifacts
+*.tmp
+*.bak
+/tmp/
+
+# Secrets — never commit
+*.key
+*.pem
+*.env
+secrets/
+configs/secrets/
+
+# OPNsense / device backups (raw)
+*.opnsense.bak
+*-backup.xml

@@ -1,0 +1,42 @@
+<!--
+  Snippet of the OPNsense config.xml VLAN section. Don't paste this whole file in;
+  copy the matching nodes into your existing config.xml or create the VLANs through the UI.
+-->
+<vlans>
+  <vlan>
+    <if>igb1</if>
+    <tag>10</tag>
+    <descr>MGMT</descr>
+    <vlanif>vlan10</vlanif>
+  </vlan>
+  <vlan>
+    <if>igb1</if>
+    <tag>20</tag>
+    <descr>LAN</descr>
+    <vlanif>vlan20</vlanif>
+  </vlan>
+  <vlan>
+    <if>igb1</if>
+    <tag>30</tag>
+    <descr>IoT</descr>
+    <vlanif>vlan30</vlanif>
+  </vlan>
+  <vlan>
+    <if>igb1</if>
+    <tag>40</tag>
+    <descr>GUEST</descr>
+    <vlanif>vlan40</vlanif>
+  </vlan>
+  <vlan>
+    <if>igb1</if>
+    <tag>50</tag>
+    <descr>TEST</descr>
+    <vlanif>vlan50</vlanif>
+  </vlan>
+  <vlan>
+    <if>igb1</if>
+    <tag>60</tag>
+    <descr>VPN</descr>
+    <vlanif>vlan60</vlanif>
+  </vlan>
+</vlans>

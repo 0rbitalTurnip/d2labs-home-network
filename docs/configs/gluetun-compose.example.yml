@@ -1,0 +1,52 @@
+# Sample Compose for the VPN-bound torrent stack.
+# Run inside the Gluetun-VPN-CT LXC (Docker-in-LXC) or on a small VM on VLAN 60.
+# Replace placeholders before use. Secrets belong in a .env file (gitignored).
+services:
+
+  gluetun:
+    image: qmcgaw/gluetun:latest
+    container_name: gluetun
+    cap_add: [NET_ADMIN]
+    devices: ["/dev/net/tun:/dev/net/tun"]
+    environment:
+      VPN_SERVICE_PROVIDER: mullvad
+      VPN_TYPE: wireguard
+      WIREGUARD_PRIVATE_KEY: ${WG_PRIVATE_KEY}
+      WIREGUARD_ADDRESSES:  ${WG_ADDRESS}
+      SERVER_CITIES: Stockholm
+      # Allow Gluetun to reach the LAN for NAS handoff:
+      FIREWALL_OUTBOUND_SUBNETS: 10.10.20.0/24
+      # qBittorrent webui port
+      HTTP_CONTROL_SERVER_ADDRESS: ":8000"
+    ports:
+      - "10.10.60.60:8080:8080"  # qBittorrent
+      - "10.10.60.60:9696:9696"  # Prowlarr
+    restart: unless-stopped
+
+  qbittorrent:
+    image: lscr.io/linuxserver/qbittorrent:latest
+    container_name: qbittorrent
+    network_mode: "service:gluetun"   # share Gluetun's namespace — only path is tun0
+    environment:
+      PUID: 1000
+      PGID: 1000
+      TZ: America/Chicago
+      WEBUI_PORT: 8080
+    volumes:
+      - ./qbt/config:/config
+      - /mnt/nas/scratch:/downloads
+    depends_on: [gluetun]
+    restart: unless-stopped
+
+  prowlarr:
+    image: lscr.io/linuxserver/prowlarr:latest
+    container_name: prowlarr
+    network_mode: "service:gluetun"
+    environment:
+      PUID: 1000
+      PGID: 1000
+      TZ: America/Chicago
+    volumes:
+      - ./prowlarr/config:/config
+    depends_on: [gluetun]
+    restart: unless-stopped

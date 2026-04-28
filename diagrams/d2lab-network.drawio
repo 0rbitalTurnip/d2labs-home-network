@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mxfile host="app.diagrams.net" modified="2026-04-28T19:00:00.000Z" agent="Perplexity Computer" version="24.0.0" type="device">
+  <diagram name="d2lab Master Network" id="d2lab-master">
+    <mxGraphModel dx="2200" dy="1400" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="2200" pageHeight="1400" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+
+        <!-- ===================== TITLE BLOCK ===================== -->
+        <mxCell id="title" value="d2lab — Master Homelab Network Architecture&#10;Domain: d2.lol  |  Cabling: Cat6A RJ45  |  Hypervisor: MHV (Proxmox)" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=22;fontStyle=1;fontColor=#28251D;" vertex="1" parent="1">
+          <mxGeometry x="40" y="20" width="2120" height="60" as="geometry" />
+        </mxCell>
+
+        <!-- ===================== LEGEND ===================== -->
+        <mxCell id="legend" value="LEGEND — Cabling &amp; Link Types" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F9F8F5;strokeColor=#D4D1CA;fontSize=12;fontStyle=1;verticalAlign=top;align=left;spacingLeft=10;spacingTop=8;" vertex="1" parent="1">
+          <mxGeometry x="40" y="90" width="380" height="220" as="geometry" />
+        </mxCell>
+        <mxCell id="lg1" value="" style="endArrow=none;html=1;strokeColor=#A12C7B;strokeWidth=4;" edge="1" parent="1"><mxGeometry relative="1" as="geometry"><mxPoint x="60" y="135" as="sourcePoint"/><mxPoint x="120" y="135" as="targetPoint"/></mxGeometry></mxCell>
+        <mxCell id="lg1t" value="WAN — ISP / Internet (Cat6A)" style="text;html=1;align=left;verticalAlign=middle;fontSize=11;" vertex="1" parent="1"><mxGeometry x="130" y="125" width="280" height="20" as="geometry"/></mxCell>
+
+        <mxCell id="lg2" value="" style="endArrow=none;html=1;strokeColor=#01696F;strokeWidth=4;" edge="1" parent="1"><mxGeometry relative="1" as="geometry"><mxPoint x="60" y="160" as="sourcePoint"/><mxPoint x="120" y="160" as="targetPoint"/></mxGeometry></mxCell>
+        <mxCell id="lg2t" value="LAN 10 GbE — Cat6A (X540 / future 10G switch)" style="text;html=1;align=left;verticalAlign=middle;fontSize=11;" vertex="1" parent="1"><mxGeometry x="130" y="150" width="280" height="20" as="geometry"/></mxCell>
+
+        <mxCell id="lg3" value="" style="endArrow=none;html=1;strokeColor=#006494;strokeWidth=3;" edge="1" parent="1"><mxGeometry relative="1" as="geometry"><mxPoint x="60" y="185" as="sourcePoint"/><mxPoint x="120" y="185" as="targetPoint"/></mxGeometry></mxCell>
+        <mxCell id="lg3t" value="MGMT 1 GbE — eno1 / IPMI / switch admin" style="text;html=1;align=left;verticalAlign=middle;fontSize=11;" vertex="1" parent="1"><mxGeometry x="130" y="175" width="280" height="20" as="geometry"/></mxCell>
+
+        <mxCell id="lg4" value="" style="endArrow=none;html=1;strokeColor=#964219;strokeWidth=3;" edge="1" parent="1"><mxGeometry relative="1" as="geometry"><mxPoint x="60" y="210" as="sourcePoint"/><mxPoint x="120" y="210" as="targetPoint"/></mxGeometry></mxCell>
+        <mxCell id="lg4t" value="IoT VLAN 30 — TV / Hue / smart devices" style="text;html=1;align=left;verticalAlign=middle;fontSize=11;" vertex="1" parent="1"><mxGeometry x="130" y="200" width="280" height="20" as="geometry"/></mxCell>
+
+        <mxCell id="lg5" value="" style="endArrow=none;html=1;strokeColor=#7A39BB;strokeWidth=3;" edge="1" parent="1"><mxGeometry relative="1" as="geometry"><mxPoint x="60" y="235" as="sourcePoint"/><mxPoint x="120" y="235" as="targetPoint"/></mxGeometry></mxCell>
+        <mxCell id="lg5t" value="Guest VLAN 40 — visitors (internet only)" style="text;html=1;align=left;verticalAlign=middle;fontSize=11;" vertex="1" parent="1"><mxGeometry x="130" y="225" width="280" height="20" as="geometry"/></mxCell>
+
+        <mxCell id="lg6" value="" style="endArrow=none;html=1;strokeColor=#437A22;strokeWidth=3;" edge="1" parent="1"><mxGeometry relative="1" as="geometry"><mxPoint x="60" y="260" as="sourcePoint"/><mxPoint x="120" y="260" as="targetPoint"/></mxGeometry></mxCell>
+        <mxCell id="lg6t" value="TEST VLAN 50 — sandbox / lab playground" style="text;html=1;align=left;verticalAlign=middle;fontSize=11;" vertex="1" parent="1"><mxGeometry x="130" y="250" width="280" height="20" as="geometry"/></mxCell>
+
+        <mxCell id="lg7" value="" style="endArrow=none;html=1;strokeColor=#D19900;strokeWidth=3;dashed=1;dashPattern=8 4;" edge="1" parent="1"><mxGeometry relative="1" as="geometry"><mxPoint x="60" y="285" as="sourcePoint"/><mxPoint x="120" y="285" as="targetPoint"/></mxGeometry></mxCell>
+        <mxCell id="lg7t" value="Tailscale overlay (WireGuard) — 100.64.0.0/10" style="text;html=1;align=left;verticalAlign=middle;fontSize=11;" vertex="1" parent="1"><mxGeometry x="130" y="275" width="280" height="20" as="geometry"/></mxCell>
+
+        <!-- ===================== IP PLAN BLOCK ===================== -->
+        <mxCell id="ipplan" value="IP / VLAN PLAN" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F9F8F5;strokeColor=#D4D1CA;fontSize=12;fontStyle=1;verticalAlign=top;align=left;spacingLeft=10;spacingTop=8;" vertex="1" parent="1">
+          <mxGeometry x="440" y="90" width="520" height="220" as="geometry" />
+        </mxCell>
+        <mxCell id="ipt" value="VLAN 10  MGMT     10.10.10.0/24   gw .1   (Proxmox eno1, IPMI, switches)&#10;VLAN 20  LAN       10.10.20.0/24   gw .1   (servers, NAS, WGR)&#10;VLAN 30  IoT        10.10.30.0/24   gw .1   (TV, Hue bridge — no LAN access)&#10;VLAN 40  GUEST   10.10.40.0/24   gw .1   (visitors — internet only, isolated)&#10;VLAN 50  TEST     10.10.50.0/24   gw .1   (sandbox / break-things lab)&#10;VLAN 60  VPN      10.10.60.0/24   gw .1   (Gluetun torrent egress — policy-routed)&#10;Tailscale  100.64.0.0/10  (overlay — MagicDNS *.tail-xxxx.ts.net)&#10;Public DNS  d2.lol  (Cloudflare)  →  *.d2.lol split-horizon via AdGuard Home" style="text;html=1;align=left;verticalAlign=top;fontSize=11;fontFamily=Courier New;spacingLeft=12;spacingTop=30;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="440" y="90" width="520" height="220" as="geometry" />
+        </mxCell>
+
+        <!-- ===================== HOST IP TABLE ===================== -->
+        <mxCell id="hosttbl" value="STATIC HOSTS  (VLAN 20 unless noted)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F9F8F5;strokeColor=#D4D1CA;fontSize=12;fontStyle=1;verticalAlign=top;align=left;spacingLeft=10;spacingTop=8;" vertex="1" parent="1">
+          <mxGeometry x="980" y="90" width="600" height="220" as="geometry" />
+        </mxCell>
+        <mxCell id="hostt" value="OPNsense g3       v10:.1   v20:.1   v30:.1   v40:.1   v50:.1   v60:.1&#10;SG105E (mgmt)   v10:.2&#10;hEX RB750Gr3    v10:.3   (test-net router on VLAN 50)&#10;Future 10G sw    v10:.4&#10;MHV (Proxmox)   eno1 v10:.10   enp1s0f1 v20:.10   IPMI v10:.110&#10;Media Server      v20:.11   IPMI v10:.111   plex.d2.lol&#10;NUC i5                  v20:.12&#10;G4 Mini                  v20:.13&#10;i3 NAS                   v20:.20   nas.d2.lol&#10;WGR (Win Gaming)  v20:.50&#10;TV / Hue Bridge      v30:.30 / .31&#10;Guest AP SSID         v40 (DHCP pool .100-.200)&#10;Gluetun VPN-CT     v60:.60   (LXC on MHV — torrents only)" style="text;html=1;align=left;verticalAlign=top;fontSize=11;fontFamily=Courier New;spacingLeft=12;spacingTop=30;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="980" y="90" width="600" height="220" as="geometry" />
+        </mxCell>
+
+        <!-- ===================== TAILSCALE NOTE ===================== -->
+        <mxCell id="tsnote" value="TAILSCALE TAILNET&#10;&#10;• Subnet router + exit node on OPNsense (advertises 10.10.0.0/16)&#10;• Native clients: MHV, Media, NAS, WGR, phones, laptop&#10;• ACLs: tag:admin → MGMT v10  |  tag:user → LAN v20 only&#10;• MagicDNS aliased to *.d2.lol via AdGuard split-horizon" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF8E1;strokeColor=#D19900;fontSize=11;verticalAlign=top;align=left;spacingLeft=10;spacingTop=8;dashed=1;dashPattern=8 4;" vertex="1" parent="1">
+          <mxGeometry x="1600" y="90" width="560" height="220" as="geometry" />
+        </mxCell>
+
+        <!-- ===================== INTERNET CLOUD ===================== -->
+        <mxCell id="inet" value="INTERNET&#10;ISP — DHCP/Static&#10;d2.lol → Cloudflare DNS" style="ellipse;whiteSpace=wrap;html=1;fillColor=#E8F0F2;strokeColor=#A12C7B;fontSize=13;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="980" y="350" width="240" height="100" as="geometry" />
+        </mxCell>
+
+        <!-- ===================== OPNSENSE g3 ===================== -->
+        <mxCell id="opn" value="OPNsense g3 — EDGE FW + ROUTER&#10;━━━━━━━━━━━━━━━━━━━━&#10;• igb0 WAN  (DHCP from ISP)&#10;• igb1 LAN  trunk → switch (all VLANs tagged)&#10;• Tailscale subnet router + exit node&#10;• WireGuard server (remote admin)&#10;• Suricata IDS / CrowdSec&#10;• Zenarmor + ntopng monitoring&#10;• HAProxy → *.d2.lol reverse proxy&#10;• AdGuard Home (DNS, split-horizon)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#01696F;strokeColor=#0C4E54;fontColor=#FFFFFF;fontSize=11;fontStyle=1;align=left;verticalAlign=top;spacingLeft=10;spacingTop=8;" vertex="1" parent="1">
+          <mxGeometry x="900" y="490" width="400" height="200" as="geometry" />
+        </mxCell>
+
+        <!-- ===================== CORE SWITCH (FUTURE 10G) ===================== -->
+        <mxCell id="sw10g" value="FUTURE 10G CORE SWITCH&#10;(planned: MikroTik CRS305 / CRS309 or QNAP QSW-M2108)&#10;━━━━━━━━━━━━━━━━━━━━&#10;• 8× 10GbE SFP+/RJ45  • 802.1Q VLAN trunk&#10;• Replaces SG105E in core role" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#1B474D;strokeColor=#0C4E54;fontColor=#FFFFFF;fontSize=11;fontStyle=1;align=center;verticalAlign=middle;spacingLeft=8;spacingRight=8;" vertex="1" parent="1">
+          <mxGeometry x="700" y="760" width="800" height="100" as="geometry" />
+        </mxCell>
+
+        <!-- ===================== SG105E ===================== -->
+        <mxCell id="sg" value="SG105E (current — 1GbE Easy Smart)&#10;━━━━━━━━━━━━━━━━━━━━&#10;P1 trunk → OPNsense igb1   (all VLANs tagged, 10 native)&#10;P2 trunk → MHV enp1s0f1   (10,20,30,50,60 tagged)&#10;P3 access v20 → Media Server&#10;P4 access v20 → NAS / NUC / G4 (via hEX downstream)&#10;P5 trunk → hEX RB750Gr3   (carries IoT v30 + Guest v40 + Test v50)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#20808D;strokeColor=#1B474D;fontColor=#FFFFFF;fontSize=10;fontStyle=1;align=left;verticalAlign=top;spacingLeft=10;spacingTop=8;" vertex="1" parent="1">
+          <mxGeometry x="200" y="900" width="500" height="120" as="geometry" />
+        </mxCell>
+
+        <!-- ===================== HEX ===================== -->
+        <mxCell id="hex" value="MikroTik hEX RB750Gr3&#10;━━━━━━━━━━━━━━━━━&#10;• 5× 1GbE   • RouterOS 7&#10;• Hosts: TEST VLAN 50 sandbox&#10;• Downstream AP: IoT v30 + Guest v40&#10;• Isolated FW rules (no v10 / v20)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#A84B2F;strokeColor=#6E1F0F;fontColor=#FFFFFF;fontSize=10;fontStyle=1;align=left;verticalAlign=top;spacingLeft=10;spacingTop=8;" vertex="1" parent="1">
+          <mxGeometry x="800" y="900" width="320" height="120" as="geometry" />
+        </mxCell>
+
+        <!-- ===================== MHV ===================== -->
+        <mxCell id="mhv" value="MHV — Main Hypervisor (Proxmox VE)&#10;━━━━━━━━━━━━━━━━━━━━━━━&#10;• eno1     1GbE  → MGMT v10 (.10)  |  IPMI .110&#10;• enp1s0f0 10G  → reserved WAN failover / direct test link&#10;• enp1s0f1 10G  → LAN trunk to switch (v10,20,30,50,60)&#10;━━━━━━━━━━━━━━━━━━━━━━━&#10;Guests: AdGuard, Gluetun-VPN-CT, *arr stack consumers,&#10;            Uptime Kuma, Grafana, Tailscale, dev sandboxes" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#28251D;strokeColor=#000000;fontColor=#FFFFFF;fontSize=11;fontStyle=1;align=left;verticalAlign=top;spacingLeft=10;spacingTop=8;" vertex="1" parent="1">
+          <mxGeometry x="40" y="1080" width="540" height="180" as="geometry" />
+        </mxCell>
+
+        <!-- ===================== MEDIA SERVER ===================== -->
+        <mxCell id="media" value="Main Media Server&#10;━━━━━━━━━━━&#10;Plex / Jellyfin&#10;*arr stack&#10;v20 .11&#10;plex.d2.lol&#10;1GbE (10G-ready)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#944454;strokeColor=#5A2530;fontColor=#FFFFFF;fontSize=10;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="610" y="1080" width="170" height="180" as="geometry" />
+        </mxCell>
+
+        <!-- ===================== NUC ===================== -->
+        <mxCell id="nuc" value="NUC i5&#10;━━━━━━&#10;Proxmox node&#10;quorum / lite VMs&#10;v20 .12&#10;1GbE" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#006494;strokeColor=#003F5C;fontColor=#FFFFFF;fontSize=10;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="800" y="1080" width="140" height="180" as="geometry" />
+        </mxCell>
+
+        <!-- ===================== G4 MINI ===================== -->
+        <mxCell id="g4" value="G4 Mini&#10;━━━━━━&#10;Proxmox node&#10;edge services&#10;v20 .13&#10;1GbE" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#006494;strokeColor=#003F5C;fontColor=#FFFFFF;fontSize=10;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="960" y="1080" width="140" height="180" as="geometry" />
+        </mxCell>
+
+        <!-- ===================== NAS ===================== -->
+        <mxCell id="nas" value="i3 NAS Build&#10;━━━━━━━━━&#10;TrueNAS / Unraid&#10;ZFS storage&#10;NFS / SMB / iSCSI&#10;v20 .20&#10;nas.d2.lol&#10;1GbE (10G-ready)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#6E522B;strokeColor=#3F2E14;fontColor=#FFFFFF;fontSize=10;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="1120" y="1080" width="170" height="180" as="geometry" />
+        </mxCell>
+
+        <!-- ===================== WGR ===================== -->
+        <mxCell id="wgr" value="WGR — Windows Gaming Rig&#10;━━━━━━━━━━━━━━━━&#10;v20 .50&#10;wgr.d2.lol&#10;Tailscale client&#10;1GbE" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#7A39BB;strokeColor=#3F1B66;fontColor=#FFFFFF;fontSize=10;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="1310" y="1080" width="220" height="180" as="geometry" />
+        </mxCell>
+
+        <!-- ===================== IoT / Guest / Test ===================== -->
+        <mxCell id="iot" value="IoT VLAN 30&#10;━━━━━━&#10;TV&#10;Hue Bridge&#10;Smart plugs&#10;v30 .30+" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFC553;strokeColor=#964219;fontColor=#28251D;fontSize=10;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="1560" y="1080" width="140" height="100" as="geometry" />
+        </mxCell>
+
+        <mxCell id="guest" value="Guest VLAN 40&#10;━━━━━━━&#10;Visitor SSID&#10;DHCP .100-.200&#10;Internet only" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#BCE2E7;strokeColor=#7A39BB;fontColor=#28251D;fontSize=10;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="1720" y="1080" width="140" height="100" as="geometry" />
+        </mxCell>
+
+        <mxCell id="test" value="TEST VLAN 50&#10;━━━━━━━&#10;Sandbox lab&#10;hEX-routed&#10;break-things zone" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#BCE2E7;strokeColor=#437A22;fontColor=#28251D;fontSize=10;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="1880" y="1080" width="140" height="100" as="geometry" />
+        </mxCell>
+
+        <!-- ===================== VPN TORRENT BUBBLE ===================== -->
+        <mxCell id="vpn" value="VPN Torrent Path  (VLAN 60)&#10;━━━━━━━━━━━━━━━━&#10;Gluetun LXC on MHV&#10;→ Mullvad / ProtonVPN WireGuard&#10;qBittorrent + Prowlarr bound to tun0&#10;Kill-switch via OPNsense policy route&#10;Sonarr / Radarr pull from NAS via v20&#10;Media → Media Server → Plex" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#1B474D;strokeColor=#0C4E54;fontColor=#FFFFFF;fontSize=10;fontStyle=1;align=left;verticalAlign=top;spacingLeft=10;spacingTop=8;dashed=1;dashPattern=8 4;" vertex="1" parent="1">
+          <mxGeometry x="1560" y="1200" width="460" height="160" as="geometry" />
+        </mxCell>
+
+        <!-- ===================== EDGES — physical cabling ===================== -->
+        <!-- Internet to OPNsense WAN -->
+        <mxCell id="e_inet_opn" style="endArrow=classic;html=1;strokeColor=#A12C7B;strokeWidth=4;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="inet" target="opn">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e_inet_label" value="WAN Cat6A → igb0" style="text;html=1;align=center;fontSize=10;fontStyle=1;fillColor=#FFFFFF;strokeColor=#A12C7B;" vertex="1" parent="1">
+          <mxGeometry x="1080" y="455" width="160" height="20" as="geometry"/>
+        </mxCell>
+
+        <!-- OPNsense to future 10G core -->
+        <mxCell id="e_opn_10g" style="endArrow=classic;html=1;strokeColor=#01696F;strokeWidth=5;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="opn" target="sw10g">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e_opn_10g_lbl" value="LAN trunk Cat6A 10G  (igb1)" style="text;html=1;align=center;fontSize=10;fontStyle=1;fillColor=#FFFFFF;strokeColor=#01696F;" vertex="1" parent="1">
+          <mxGeometry x="980" y="715" width="220" height="20" as="geometry"/>
+        </mxCell>
+
+        <!-- 10G core to SG105E -->
+        <mxCell id="e_10g_sg" style="endArrow=classic;html=1;strokeColor=#01696F;strokeWidth=4;exitX=0.25;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="sw10g" target="sg">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e_10g_sg_lbl" value="Cat6A 10G uplink → SG105E P1" style="text;html=1;align=center;fontSize=10;fillColor=#FFFFFF;" vertex="1" parent="1">
+          <mxGeometry x="500" y="870" width="220" height="20" as="geometry"/>
+        </mxCell>
+
+        <!-- 10G core to hEX -->
+        <mxCell id="e_10g_hex" style="endArrow=classic;html=1;strokeColor=#964219;strokeWidth=3;exitX=0.7;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="sw10g" target="hex">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e_10g_hex_lbl" value="Cat6A 1G trunk → hEX (v30/40/50)" style="text;html=1;align=center;fontSize=10;fillColor=#FFFFFF;" vertex="1" parent="1">
+          <mxGeometry x="900" y="870" width="240" height="20" as="geometry"/>
+        </mxCell>
+
+        <!-- MHV to 10G core (dual link) -->
+        <mxCell id="e_mhv_10g_lan" style="endArrow=classic;html=1;strokeColor=#01696F;strokeWidth=5;exitX=0.5;exitY=0;entryX=0.15;entryY=1;" edge="1" parent="1" source="mhv" target="sw10g">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e_mhv_10g_lbl" value="enp1s0f1 10G LAN trunk  (Cat6A)" style="text;html=1;align=center;fontSize=10;fontStyle=1;fillColor=#FFFFFF;strokeColor=#01696F;" vertex="1" parent="1">
+          <mxGeometry x="240" y="920" width="240" height="20" as="geometry"/>
+        </mxCell>
+
+        <!-- MHV WAN-side X540 to OPNsense (failover/direct) -->
+        <mxCell id="e_mhv_wan" style="endArrow=classic;html=1;strokeColor=#A12C7B;strokeWidth=3;dashed=1;dashPattern=4 4;exitX=0.7;exitY=0;entryX=0;entryY=1;" edge="1" parent="1" source="mhv" target="opn">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e_mhv_wan_lbl" value="enp1s0f0 10G  (WAN failover / direct test)" style="text;html=1;align=center;fontSize=10;fillColor=#FFFFFF;" vertex="1" parent="1">
+          <mxGeometry x="430" y="800" width="280" height="20" as="geometry"/>
+        </mxCell>
+
+        <!-- MHV eno1 mgmt to SG105E -->
+        <mxCell id="e_mhv_mgmt" style="endArrow=classic;html=1;strokeColor=#006494;strokeWidth=3;exitX=0.3;exitY=0;entryX=0.5;entryY=1;" edge="1" parent="1" source="mhv" target="sg">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e_mhv_mgmt_lbl" value="eno1 MGMT  Cat6A → SG105E P2" style="text;html=1;align=center;fontSize=10;fillColor=#FFFFFF;strokeColor=#006494;" vertex="1" parent="1">
+          <mxGeometry x="180" y="1040" width="240" height="20" as="geometry"/>
+        </mxCell>
+
+        <!-- Media to 10G core -->
+        <mxCell id="e_media" style="endArrow=classic;html=1;strokeColor=#01696F;strokeWidth=3;exitX=0.5;exitY=0;entryX=0.4;entryY=1;" edge="1" parent="1" source="media" target="sw10g"><mxGeometry relative="1" as="geometry"/></mxCell>
+
+        <!-- NUC to 10G core -->
+        <mxCell id="e_nuc" style="endArrow=classic;html=1;strokeColor=#01696F;strokeWidth=3;exitX=0.5;exitY=0;entryX=0.5;entryY=1;" edge="1" parent="1" source="nuc" target="sw10g"><mxGeometry relative="1" as="geometry"/></mxCell>
+
+        <!-- G4 to 10G core -->
+        <mxCell id="e_g4" style="endArrow=classic;html=1;strokeColor=#01696F;strokeWidth=3;exitX=0.5;exitY=0;entryX=0.55;entryY=1;" edge="1" parent="1" source="g4" target="sw10g"><mxGeometry relative="1" as="geometry"/></mxCell>
+
+        <!-- NAS to 10G core -->
+        <mxCell id="e_nas" style="endArrow=classic;html=1;strokeColor=#01696F;strokeWidth=3;exitX=0.5;exitY=0;entryX=0.65;entryY=1;" edge="1" parent="1" source="nas" target="sw10g"><mxGeometry relative="1" as="geometry"/></mxCell>
+
+        <!-- WGR to 10G core -->
+        <mxCell id="e_wgr" style="endArrow=classic;html=1;strokeColor=#01696F;strokeWidth=3;exitX=0.3;exitY=0;entryX=0.8;entryY=1;" edge="1" parent="1" source="wgr" target="sw10g"><mxGeometry relative="1" as="geometry"/></mxCell>
+
+        <!-- IoT/Guest/Test to hEX -->
+        <mxCell id="e_iot" style="endArrow=classic;html=1;strokeColor=#964219;strokeWidth=3;exitX=0.2;exitY=0;entryX=0.85;entryY=1;" edge="1" parent="1" source="iot" target="hex"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e_guest" style="endArrow=classic;html=1;strokeColor=#7A39BB;strokeWidth=3;exitX=0.2;exitY=0;entryX=0.95;entryY=1;" edge="1" parent="1" source="guest" target="hex"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e_test" style="endArrow=classic;html=1;strokeColor=#437A22;strokeWidth=3;exitX=0.1;exitY=0;entryX=1;entryY=0.8;" edge="1" parent="1" source="test" target="hex"><mxGeometry relative="1" as="geometry"/></mxCell>
+
+        <!-- VPN bubble overlay to MHV -->
+        <mxCell id="e_vpn_mhv" style="endArrow=classic;html=1;strokeColor=#1B474D;strokeWidth=2;dashed=1;dashPattern=8 4;exitX=0;exitY=0.5;entryX=1;entryY=0.8;" edge="1" parent="1" source="vpn" target="mhv">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <!-- Tailscale dashed overlay (visual layer hint) -->
+        <mxCell id="e_ts_opn_mhv" style="endArrow=none;html=1;strokeColor=#D19900;strokeWidth=2;dashed=1;dashPattern=4 4;exitX=0;exitY=0.5;entryX=0.9;entryY=0;" edge="1" parent="1" source="opn" target="mhv">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e_ts_lbl" value="Tailscale overlay" style="text;html=1;align=center;fontSize=10;fontColor=#D19900;fontStyle=2;" vertex="1" parent="1">
+          <mxGeometry x="640" y="780" width="120" height="20" as="geometry"/>
+        </mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
