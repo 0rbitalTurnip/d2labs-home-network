@@ -1,0 +1,69 @@
+#!/usr/bin/env python3
+"""Dynamic inventory wrapper for d2lab Ansible.
+
+Usage: ansible-playbook -i ansible/inventory.yml ...
+
+This script will ensure `ansible/generated_inventory.yml` exists (generating it from
+`docs/configs/inventory.csv` if needed) and will print JSON on `--list` as required by
+Ansible dynamic inventory interface.
+"""
+import json
+import os
+import sys
+import subprocess
+import yaml
+
+HERE = os.path.dirname(__file__)
+GEN = os.path.join(HERE, 'generated_inventory.yml')
+GEN_CMD = os.path.normpath(os.path.join(HERE, '..', 'scripts', 'inventory_to_ansible.py'))
+
+def ensure_generated():
+  if not os.path.exists(GEN):
+    # try to run generator
+    try:
+      subprocess.check_call([sys.executable, GEN_CMD])
+    except Exception as e:
+      print(f"Failed to generate inventory: {e}", file=sys.stderr)
+      sys.exit(2)
+
+def load_generated():
+  with open(GEN, 'r', encoding='utf-8') as f:
+    return yaml.safe_load(f)
+
+def to_ansible_list(yaml_inv):
+  # The generated YAML follows Ansible inventory format; return a hosts->vars mapping
+  # For simplicity, return the 'all'->'hosts' mapping as JSON; Ansible accepts this for --list
+  all_section = yaml_inv.get('all', {})
+  hosts = all_section.get('hosts', {})
+  # Build groups from children
+  groups = {}
+  for g, v in all_section.get('children', {}).items():
+    groups[g] = {'hosts': list(v.get('hosts', {}).keys())}
+  result = groups
+  # attach hostvars
+  hostvars = {}
+  for h, meta in hosts.items():
+    hostvars[h] = dict(meta) if isinstance(meta, dict) else {}
+  result['_meta'] = {'hostvars': hostvars}
+  return result
+
+def main():
+  ensure_generated()
+  inv = load_generated()
+  if '--list' in sys.argv or len(sys.argv) == 1:
+    out = to_ansible_list(inv)
+    print(json.dumps(out))
+    return 0
+  # --host <hostname> support (optional)
+  if '--host' in sys.argv:
+    idx = sys.argv.index('--host')
+    if idx + 1 < len(sys.argv):
+      hostname = sys.argv[idx+1]
+      hostvars = inv.get('all', {}).get('hosts', {}).get(hostname, {})
+      print(json.dumps(hostvars))
+      return 0
+  print(json.dumps({}))
+  return 0
+
+if __name__ == '__main__':
+  sys.exit(main())

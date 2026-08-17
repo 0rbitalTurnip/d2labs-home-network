@@ -1,0 +1,24 @@
+Category,Item,Specs,Status / Notes,Groups,Tags,ansible_host
+CPU,Intel Core i5-13500,"14C/20T, LGA1700",Loose,,, 
+CPU,AMD Ryzen 7 5800X,"8C/16T, AM4",Loose,,, 
+CPU,Intel Core i3-12100,"4C/8T, LGA1700",Loose,,, 
+Motherboard,JGinyue B760I Gaming WiFi,"Mini-ITX, LGA1700",Loose,,, 
+Motherboard,Gigabyte Aorus Ultra,"ATX, AM4",Loose,,, 
+Motherboard,ASUS Prime H610,"mATX, LGA1700",Loose,,, 
+RAM,Corsair Vengeance DDR4,64GB kit,Loose,,, 
+RAM,Corsair Vengeance DDR4,32GB kit,Loose,,, 
+RAM,HP ProDesk 600 G4 Mini RAM,8GB DDR4 SODIMM,"Removable, currently in G4 Mini",,, 
+RAM,HP ProDesk 600 G3 SFF RAM,16GB DDR4 UDIMM,"Removable, currently in G3 SFF",,, 
+NIC,Intel X540 Dual 10GbE NIC,Dual-port 10GbE,Loose,,, 
+NIC,Supermicro AOC-SG-i4,"Quad-port Gigabit, low-profile bracket",Loose,,, 
+Case,Phanteks Evolv X2,"Full Tower, ATX",Loose,,, 
+Case,Phanteks P500A,"Mid Tower, ATX",Loose,,, 
+Case,Thermalright Tower 300,Micro-ATX,Loose,,, 
+Host,OPNsense g3,"Edge firewall + router","Deployed — edge router + Tailscale exit node",OPNsense,firewall,
+Host,MHV (Main Hypervisor),"Proxmox VE (MHV) — bridges: vmbr10/20/30/50/60","Deployed — hypervisor",proxmox,mhv,10.10.10.10
+Host,Main Media Server,"Plex/Jellyfin media server, transcode","Deployed — media server",media,plex,10.10.20.11
+Host,NUC i5,"NUC i5 Proxmox node","Deployed — proxmox node",proxmox,nuc,10.10.20.12
+Host,G4 Mini,"G4 Mini Proxmox node","Deployed — low-power proxmox node",proxmox,g4,10.10.20.13
+Host,i3 NAS,"TrueNAS/Unraid NAS — ZFS NFS exports","Deployed — storage",nas,storage,10.10.20.20
+Host,WGR,"Windows Gaming Rig","User workstation — gaming",workstation,wgr,10.10.20.50
+Host,TV / Hue Bridge,"IoT devices (TV + Hue Bridge)",Deployed,IoT,

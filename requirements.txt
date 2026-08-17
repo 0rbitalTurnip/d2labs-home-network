@@ -1,0 +1,5 @@
+reportlab>=4.0
+pypdf>=3.0
+# YAML parsing for inventory generator
+PyYAML>=6.0
+# Optional: add further build or lint deps as needed

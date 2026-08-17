@@ -1,0 +1,15 @@
+---
+# OPNsense role skeleton: uploads VLAN XML snippet for manual import
+- name: Copy OPNsense VLAN XML to /tmp/opnsense-vlans.example.xml
+  copy:
+    src: ../../../docs/configs/opnsense-vlans.example.xml
+    dest: /tmp/opnsense-vlans.example.xml
+    owner: root
+    group: root
+    mode: '0644'
+
+- name: Instruct operator for OPNsense import
+  debug:
+    msg: |
+      The VLAN XML has been copied to /tmp/opnsense-vlans.example.xml on the target host.
+      Import it via the OPNsense GUI: System → Configuration → Backups → Restore (choose the file).

@@ -1,0 +1,7 @@
+---
+# d2lab Ansible playbook skeleton
+- name: d2lab site (skeleton)
+  hosts: all
+  gather_facts: true
+  roles:
+    - common

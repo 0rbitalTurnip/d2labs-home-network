@@ -1,0 +1,6 @@
+---
+# Common role (skeleton) — tasks to be implemented
+- name: Ensure basic packages present (skeleton)
+  package:
+    name: ["curl", "git"]
+    state: present

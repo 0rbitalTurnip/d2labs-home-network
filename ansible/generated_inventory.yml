@@ -1,0 +1,195 @@
+all:
+  hosts:
+    controller:
+      ansible_host: localhost
+    intel-core-i5-13500:
+      item: Intel Core i5-13500
+      category: CPU
+      specs: 14C/20T, LGA1700
+      notes: Loose
+    amd-ryzen-7-5800x:
+      item: AMD Ryzen 7 5800X
+      category: CPU
+      specs: 8C/16T, AM4
+      notes: Loose
+    intel-core-i3-12100:
+      item: Intel Core i3-12100
+      category: CPU
+      specs: 4C/8T, LGA1700
+      notes: Loose
+    jginyue-b760i-gaming-wifi:
+      item: JGinyue B760I Gaming WiFi
+      category: Motherboard
+      specs: Mini-ITX, LGA1700
+      notes: Loose
+    gigabyte-aorus-ultra:
+      item: Gigabyte Aorus Ultra
+      category: Motherboard
+      specs: ATX, AM4
+      notes: Loose
+    asus-prime-h610:
+      item: ASUS Prime H610
+      category: Motherboard
+      specs: mATX, LGA1700
+      notes: Loose
+    corsair-vengeance-ddr4:
+      item: Corsair Vengeance DDR4
+      category: RAM
+      specs: 64GB kit
+      notes: Loose
+    corsair-vengeance-ddr4-2:
+      item: Corsair Vengeance DDR4
+      category: RAM
+      specs: 32GB kit
+      notes: Loose
+    hp-prodesk-600-g4-mini-ram:
+      item: HP ProDesk 600 G4 Mini RAM
+      category: RAM
+      specs: 8GB DDR4 SODIMM
+      notes: Removable, currently in G4 Mini
+    hp-prodesk-600-g3-sff-ram:
+      item: HP ProDesk 600 G3 SFF RAM
+      category: RAM
+      specs: 16GB DDR4 UDIMM
+      notes: Removable, currently in G3 SFF
+    intel-x540-dual-10gbe-nic:
+      item: Intel X540 Dual 10GbE NIC
+      category: NIC
+      specs: Dual-port 10GbE
+      notes: Loose
+    supermicro-aoc-sg-i4:
+      item: Supermicro AOC-SG-i4
+      category: NIC
+      specs: Quad-port Gigabit, low-profile bracket
+      notes: Loose
+    phanteks-evolv-x2:
+      item: Phanteks Evolv X2
+      category: Case
+      specs: Full Tower, ATX
+      notes: Loose
+    phanteks-p500a:
+      item: Phanteks P500A
+      category: Case
+      specs: Mid Tower, ATX
+      notes: Loose
+    thermalright-tower-300:
+      item: Thermalright Tower 300
+      category: Case
+      specs: Micro-ATX
+      notes: Loose
+    opnsense-g3:
+      item: OPNsense g3
+      category: Host
+      specs: Edge firewall + router
+      notes: "Deployed \u2014 edge router + Tailscale exit node"
+      tags:
+      - firewall
+    mhv-main-hypervisor:
+      item: MHV (Main Hypervisor)
+      category: Host
+      specs: "Proxmox VE (MHV) \u2014 bridges: vmbr10/20/30/50/60"
+      notes: "Deployed \u2014 hypervisor"
+      tags:
+      - mhv
+      ansible_host: 10.10.10.10
+    main-media-server:
+      item: Main Media Server
+      category: Host
+      specs: Plex/Jellyfin media server, transcode
+      notes: "Deployed \u2014 media server"
+      tags:
+      - plex
+      ansible_host: 10.10.20.11
+    nuc-i5:
+      item: NUC i5
+      category: Host
+      specs: NUC i5 Proxmox node
+      notes: "Deployed \u2014 proxmox node"
+      tags:
+      - nuc
+      ansible_host: 10.10.20.12
+    g4-mini:
+      item: G4 Mini
+      category: Host
+      specs: G4 Mini Proxmox node
+      notes: "Deployed \u2014 low-power proxmox node"
+      tags:
+      - g4
+      ansible_host: 10.10.20.13
+    i3-nas:
+      item: i3 NAS
+      category: Host
+      specs: "TrueNAS/Unraid NAS \u2014 ZFS NFS exports"
+      notes: "Deployed \u2014 storage"
+      tags:
+      - storage
+      ansible_host: 10.10.20.20
+    wgr:
+      item: WGR
+      category: Host
+      specs: Windows Gaming Rig
+      notes: "User workstation \u2014 gaming"
+      tags:
+      - wgr
+      ansible_host: 10.10.20.50
+    tv-hue-bridge:
+      item: TV / Hue Bridge
+      category: Host
+      specs: IoT devices (TV + Hue Bridge)
+      notes: Deployed
+  children:
+    CPU:
+      hosts:
+        intel-core-i5-13500: {}
+        amd-ryzen-7-5800x: {}
+        intel-core-i3-12100: {}
+    Motherboard:
+      hosts:
+        jginyue-b760i-gaming-wifi: {}
+        gigabyte-aorus-ultra: {}
+        asus-prime-h610: {}
+    RAM:
+      hosts:
+        corsair-vengeance-ddr4: {}
+        corsair-vengeance-ddr4-2: {}
+        hp-prodesk-600-g4-mini-ram: {}
+        hp-prodesk-600-g3-sff-ram: {}
+    NIC:
+      hosts:
+        intel-x540-dual-10gbe-nic: {}
+        supermicro-aoc-sg-i4: {}
+    Case:
+      hosts:
+        phanteks-evolv-x2: {}
+        phanteks-p500a: {}
+        thermalright-tower-300: {}
+    Host:
+      hosts:
+        opnsense-g3: {}
+        mhv-main-hypervisor: {}
+        main-media-server: {}
+        nuc-i5: {}
+        g4-mini: {}
+        i3-nas: {}
+        wgr: {}
+        tv-hue-bridge: {}
+    OPNsense:
+      hosts:
+        opnsense-g3: {}
+    proxmox:
+      hosts:
+        mhv-main-hypervisor: {}
+        nuc-i5: {}
+        g4-mini: {}
+    media:
+      hosts:
+        main-media-server: {}
+    nas:
+      hosts:
+        i3-nas: {}
+    workstation:
+      hosts:
+        wgr: {}
+    IoT:
+      hosts:
+        tv-hue-bridge: {}

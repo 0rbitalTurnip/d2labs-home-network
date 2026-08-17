@@ -5,6 +5,7 @@ Vector-rendered with ReportLab — fully embedded fonts, hyperlinks, and no rast
 """
 import os
 import urllib.request
+import argparse
 from reportlab.lib.pagesizes import landscape, A3, letter
 from reportlab.lib import colors
 from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
@@ -19,9 +20,22 @@ from reportlab.graphics.shapes import (
     Drawing, Rect, String, Line, Polygon, Group, Circle, Ellipse
 )
 
-OUT_DIR = "/home/user/workspace/d2lab-net"
+# Default to repo-relative paths; allow override via CLI `--out` (dir or file)
+BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
+parser = argparse.ArgumentParser(description="Build d2lab network overview PDF")
+parser.add_argument("--out", "-o", help="Output directory or PDF file path (overrides default)", default=None)
+args = parser.parse_args()
+if args.out:
+    out_arg = os.path.abspath(args.out)
+    if os.path.isdir(out_arg):
+        OUT_DIR = out_arg
+    else:
+        # treat as file path — use its parent directory as OUT_DIR
+        OUT_DIR = os.path.dirname(out_arg) or BASE_DIR
+else:
+    OUT_DIR = BASE_DIR
 PDF_PATH = os.path.join(OUT_DIR, "diagrams", "d2lab-network-overview.pdf")
-FONTS_DIR = "/tmp/d2lab_fonts"
+FONTS_DIR = os.path.join(BASE_DIR, ".cache", "d2lab_fonts")
 os.makedirs(FONTS_DIR, exist_ok=True)
 
 # ---------- Fonts (DM Sans + JetBrains Mono) ----------

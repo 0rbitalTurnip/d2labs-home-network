@@ -1,0 +1,27 @@
+---
+# Proxmox role (networking skeleton)
+- name: Ensure common packages for networking are installed
+  apt:
+    name:
+      - ifupdown2
+      - bridge-utils
+    state: present
+    update_cache: yes
+
+- name: Install iproute2 (ensure ip tooling present)
+  apt:
+    name: iproute2
+    state: present
+
+- name: Deploy MHV interfaces example to /etc/network/interfaces.d/mhv.cfg (backup)
+  copy:
+    src: mhv-interfaces.example
+    dest: /etc/network/interfaces.d/mhv.cfg
+    owner: root
+    group: root
+    mode: '0644'
+    backup: yes
+
+- name: Notify user to review interfaces file
+  debug:
+    msg: "Deployed mhv interfaces example to /etc/network/interfaces.d/mhv.cfg — review before bringing interfaces up"

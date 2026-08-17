@@ -1,0 +1,22 @@
+# Example /etc/network/interfaces snippet for MHV (Proxmox)
+# Copy to /etc/network/interfaces.d/mhv.cfg and adjust IPs as needed.
+auto lo
+iface lo inet loopback
+
+auto eno1
+iface eno1 inet static
+  address 10.10.10.10/24
+  gateway 10.10.10.1
+  dns-nameservers 10.10.20.2 1.1.1.1
+
+# 10G LAN trunk
+auto enp1s0f1
+iface enp1s0f1 inet manual
+  up ip link set $IFACE up
+
+auto vmbr0
+iface vmbr0 inet static
+  address 10.10.20.10/24
+  bridge-ports enp1s0f1
+  bridge-stp off
+  bridge-fd 0
