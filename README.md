@@ -3,11 +3,12 @@
 Master documentation, diagrams, and runbooks for the **d2lab** homelab.
 
 - **Domain:** `d2.lol`
-- **Main hypervisor:** `MHV` (Proxmox VE)
+- **Main hypervisor:** `compute-01` (Proxmox VE, i5-13500)
 - **Cabling:** Cat6A RJ45 throughout
-- **Edge:** OPNsense g3 build (firewall + Tailscale + monitoring)
+- **Edge:** OPNsense on HP ProDesk 600 G3 SFF (firewall + Tailscale + monitoring)
 - **Core (now):** TP-Link SG105E (1 GbE, 802.1Q)
 - **Core (planned):** 10 GbE switch — MikroTik CRS305 / CRS309 or QNAP QSW-M2108
+  (must have RJ45 10GBase-T ports or SFP+-to-RJ45 transceivers — the X540 NICs are copper)
 - **Aux router:** MikroTik hEX RB750Gr3 (test-net + IoT/Guest gateway)
 
 ## Quick links

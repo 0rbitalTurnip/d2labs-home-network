@@ -2,194 +2,427 @@ all:
   hosts:
     controller:
       ansible_host: localhost
-    intel-core-i5-13500:
-      item: Intel Core i5-13500
-      category: CPU
-      specs: 14C/20T, LGA1700
-      notes: Loose
     amd-ryzen-7-5800x:
       item: AMD Ryzen 7 5800X
       category: CPU
       specs: 8C/16T, AM4
-      notes: Loose
+      notes: "Box 1 (ai-box) \u2014 AI/gaming host"
+      tags:
+      - cpu
     intel-core-i3-12100:
       item: Intel Core i3-12100
       category: CPU
       specs: 4C/8T, LGA1700
-      notes: Loose
-    jginyue-b760i-gaming-wifi:
-      item: JGinyue B760I Gaming WiFi
+      notes: "Box 2 (nas-01) \u2014 NAS/media host"
+      tags:
+      - cpu
+    intel-core-i5-13500:
+      item: Intel Core i5-13500
+      category: CPU
+      specs: 14C/20T, LGA1700
+      notes: "Box 3 (compute-01) \u2014 Proxmox host"
+      tags:
+      - cpu
+    gigabyte-aorus-ultra-x570:
+      item: Gigabyte Aorus Ultra x570
       category: Motherboard
-      specs: Mini-ITX, LGA1700
-      notes: Loose
-    gigabyte-aorus-ultra:
-      item: Gigabyte Aorus Ultra
-      category: Motherboard
-      specs: ATX, AM4
-      notes: Loose
+      specs: ATX, AM4, DDR4
+      notes: Box 1 (ai-box)
+      tags:
+      - board
     asus-prime-h610:
       item: ASUS Prime H610
       category: Motherboard
-      specs: mATX, LGA1700
-      notes: Loose
-    corsair-vengeance-ddr4:
-      item: Corsair Vengeance DDR4
+      specs: mATX, LGA1700, DDR4
+      notes: Box 2 (nas-01)
+      tags:
+      - board
+    jginyue-b760i-gaming-wifi:
+      item: JGinyue B760I Gaming WiFi
+      category: Motherboard
+      specs: Mini-ITX, LGA1700, DDR4
+      notes: Box 3 (compute-01)
+      tags:
+      - board
+    corsair-vengeance-ddr4-64gb-kit:
+      item: Corsair Vengeance DDR4 64GB kit
       category: RAM
-      specs: 64GB kit
-      notes: Loose
-    corsair-vengeance-ddr4-2:
-      item: Corsair Vengeance DDR4
+      specs: 2x32GB DDR4
+      notes: "Box 1 (ai-box) \u2014 64GB; 32GB kit returns when P40 lands"
+      tags:
+      - ram
+    corsair-vengeance-ddr4-32gb-kit:
+      item: Corsair Vengeance DDR4 32GB kit
       category: RAM
-      specs: 32GB kit
-      notes: Loose
-    hp-prodesk-600-g4-mini-ram:
-      item: HP ProDesk 600 G4 Mini RAM
+      specs: 2x16GB DDR4
+      notes: "Box 3 (compute-01) \u2014 32GB"
+      tags:
+      - ram
+    ddr4-16gb-kit-2x8gb:
+      item: DDR4 16GB kit (2x8GB)
       category: RAM
-      specs: 8GB DDR4 SODIMM
-      notes: Removable, currently in G4 Mini
-    hp-prodesk-600-g3-sff-ram:
-      item: HP ProDesk 600 G3 SFF RAM
-      category: RAM
-      specs: 16GB DDR4 UDIMM
-      notes: Removable, currently in G3 SFF
+      specs: DDR4 UDIMM
+      notes: "To buy \u2014 Box 2 (nas-01) needs RAM"
+      tags:
+      - ram
+    evga-ftw3-rtx-ultra-3080:
+      item: EVGA FTW3 RTX Ultra 3080
+      category: Graphics Card
+      specs: 10GB VRAM
+      notes: "Box 1 (ai-box) \u2014 display + gaming; sub-125B inference"
+      tags:
+      - gpu
+    intel-x540-10gbe-nic-single:
+      item: Intel X540 10GbE NIC (single)
+      category: NIC
+      specs: 10GbE copper 10GBase-T
+      notes: Box 1 (ai-box)
+      tags:
+      - nic
+    intel-x540-10gbe-nic-single-2:
+      item: Intel X540 10GbE NIC (single)
+      category: NIC
+      specs: 10GbE copper 10GBase-T
+      notes: Box 3 (compute-01)
+      tags:
+      - nic
     intel-x540-dual-10gbe-nic:
       item: Intel X540 Dual 10GbE NIC
       category: NIC
-      specs: Dual-port 10GbE
-      notes: Loose
+      specs: Dual-port 10GbE copper 10GBase-T
+      notes: "Box 2 (nas-01) \u2014 via M.2-to-PCIe adapter (verify adapter type)"
+      tags:
+      - nic
     supermicro-aoc-sg-i4:
       item: Supermicro AOC-SG-i4
       category: NIC
       specs: Quad-port Gigabit, low-profile bracket
-      notes: Loose
-    phanteks-evolv-x2:
-      item: Phanteks Evolv X2
+      notes: "Edge (edge-01) \u2014 OPNsense WAN/LAN"
+      tags:
+      - nic
+    phanteks-evolv-x:
+      item: Phanteks Evolv X
       category: Case
       specs: Full Tower, ATX
-      notes: Loose
+      notes: Box 1 (ai-box)
+      tags:
+      - case
     phanteks-p500a:
       item: Phanteks P500A
       category: Case
       specs: Mid Tower, ATX
-      notes: Loose
-    thermalright-tower-300:
-      item: Thermalright Tower 300
+      notes: "Box 2 (nas-01) \u2014 drive bays for 6x 3.5in"
+      tags:
+      - case
+    lian-li-tu-150:
+      item: Lian Li TU-150
+      category: Case
+      specs: Mini-ITX
+      notes: Box 3 (compute-01)
+      tags:
+      - case
+    thermaltake-tower-300:
+      item: Thermaltake Tower 300
       category: Case
       specs: Micro-ATX
-      notes: Loose
-    opnsense-g3:
-      item: OPNsense g3
-      category: Host
-      specs: Edge firewall + router
-      notes: "Deployed \u2014 edge router + Tailscale exit node"
+      notes: Spare
       tags:
-      - firewall
-    mhv-main-hypervisor:
-      item: MHV (Main Hypervisor)
-      category: Host
-      specs: "Proxmox VE (MHV) \u2014 bridges: vmbr10/20/30/50/60"
-      notes: "Deployed \u2014 hypervisor"
+      - case
+    4-bay-nas-case:
+      item: 4 bay NAS case
+      category: Case
+      specs: Mini-ITX
+      notes: Spare
       tags:
-      - mhv
-      ansible_host: 10.10.10.10
-    main-media-server:
-      item: Main Media Server
-      category: Host
-      specs: Plex/Jellyfin media server, transcode
-      notes: "Deployed \u2014 media server"
+      - case
+    corsair-rm850:
+      item: Corsair RM850
+      category: PSU
+      specs: 850W ATX
+      notes: Box 1 (ai-box)
       tags:
-      - plex
-      ansible_host: 10.10.20.11
-    nuc-i5:
-      item: NUC i5
-      category: Host
-      specs: NUC i5 Proxmox node
-      notes: "Deployed \u2014 proxmox node"
+      - psu
+    powerman-500w:
+      item: Powerman 500W
+      category: PSU
+      specs: 500W ATX (budget brand)
+      notes: Box 2 (nas-01)
       tags:
-      - nuc
-      ansible_host: 10.10.20.12
-    g4-mini:
-      item: G4 Mini
-      category: Host
-      specs: G4 Mini Proxmox node
-      notes: "Deployed \u2014 low-power proxmox node"
+      - psu
+    esgaming-500w:
+      item: ESGaming 500W
+      category: PSU
+      specs: 500W SFX
+      notes: Box 3 (compute-01)
       tags:
-      - g4
-      ansible_host: 10.10.20.13
-    i3-nas:
-      item: i3 NAS
-      category: Host
-      specs: "TrueNAS/Unraid NAS \u2014 ZFS NFS exports"
-      notes: "Deployed \u2014 storage"
+      - psu
+    inspur-lsi-9300-8i:
+      item: Inspur LSI 9300-8i
+      category: HBA
+      specs: 12Gbps HBA, 2x SFF-8643
+      notes: "Box 2 (nas-01) \u2014 x16 slot"
       tags:
-      - storage
-      ansible_host: 10.10.20.20
-    wgr:
-      item: WGR
-      category: Host
-      specs: Windows Gaming Rig
-      notes: "User workstation \u2014 gaming"
+      - hba
+    mini-sas-hd-sff-8643-to-4x-sata-forward-breakout:
+      item: Mini SAS HD SFF-8643 to 4x SATA forward breakout
+      category: Cable
+      specs: LSI00411-style, 1m
+      notes: "Box 2 (nas-01) \u2014 4x WD Red"
       tags:
-      - wgr
-      ansible_host: 10.10.20.50
-    tv-hue-bridge:
-      item: TV / Hue Bridge
+      - cable
+    minisas-sff-8643-to-sff-8482-sas-fanout:
+      item: MiniSAS SFF-8643 to SFF-8482 SAS fanout
+      category: Cable
+      specs: SAS fanout cable
+      notes: "To buy \u2014 needed for 4TB SAS drive"
+      tags:
+      - cable
+    thermaltake-pcie-3.0-x16-riser-w-m.2-adapter:
+      item: Thermaltake PCIe 3.0 x16 riser w/ M.2 adapter
+      category: Cable
+      specs: Riser cable
+      notes: Spare (Tower 300 kit)
+      tags:
+      - cable
+    wd-red-1tb-sata-hdd-1:
+      item: WD Red 1TB SATA HDD (1)
+      category: Drive
+      specs: 1TB 3.5in SATA
+      notes: "Box 2 (nas-01) \u2014 4x RAIDZ1 tank/media"
+      tags:
+      - drive
+    wd-red-1tb-sata-hdd-2:
+      item: WD Red 1TB SATA HDD (2)
+      category: Drive
+      specs: 1TB 3.5in SATA
+      notes: "Box 2 (nas-01) \u2014 4x RAIDZ1 tank/media"
+      tags:
+      - drive
+    wd-red-1tb-sata-hdd-3:
+      item: WD Red 1TB SATA HDD (3)
+      category: Drive
+      specs: 1TB 3.5in SATA
+      notes: "Box 2 (nas-01) \u2014 4x RAIDZ1 tank/media"
+      tags:
+      - drive
+    wd-red-1tb-sata-hdd-4:
+      item: WD Red 1TB SATA HDD (4)
+      category: Drive
+      specs: 1TB 3.5in SATA
+      notes: "Box 2 (nas-01) \u2014 4x RAIDZ1 tank/media"
+      tags:
+      - drive
+    wd-blue-3tb-sata-hdd:
+      item: WD Blue 3TB SATA HDD
+      category: Drive
+      specs: 3TB 3.5in SATA
+      notes: "Box 2 (nas-01) \u2014 scratch/backup staging"
+      tags:
+      - drive
+    emc-data-domain-4tb-sas:
+      item: EMC Data Domain 4TB SAS
+      category: Drive
+      specs: 4TB 7.2K SAS 12G 3.5in
+      notes: "Box 2 (nas-01) \u2014 app data pool (needs SAS fanout cable)"
+      tags:
+      - drive
+    hp-prodesk-600-g4-mini-1:
+      item: HP ProDesk 600 G4 Mini (1)
+      category: Prebuilt
+      specs: i5-8500T / 32GB RAM
+      notes: "Utility (util-01) \u2014 DNS/monitoring"
+      tags:
+      - prebuilt
+    hp-prodesk-600-g4-mini-2:
+      item: HP ProDesk 600 G4 Mini (2)
+      category: Prebuilt
+      specs: i5-8500T / 32GB RAM
+      notes: "Utility (util-02) \u2014 DNS/monitoring"
+      tags:
+      - prebuilt
+    hp-prodesk-600-g3-sff:
+      item: HP ProDesk 600 G3 SFF
+      category: Prebuilt
+      specs: i5-7500 / 16GB RAM
+      notes: "Edge (edge-01) \u2014 OPNsense host"
+      tags:
+      - prebuilt
+    intel-nuc-i3fnhn:
+      item: Intel NUC i3FNHN
+      category: Prebuilt
+      specs: i3-10110U / 12GB RAM
+      notes: "Utility (util-03) \u2014 Tailscale/sandbox"
+      tags:
+      - prebuilt
+    ai-box:
+      item: ai-box
       category: Host
-      specs: IoT devices (TV + Hue Bridge)
-      notes: Deployed
+      specs: "Ubuntu 24.04 \u2014 Strata + Steam/Proton + Sunshine"
+      notes: "AI/gaming \u2014 5800X/X570/64GB/3080 (+P40 pending)"
+      tags:
+      - host
+    nas-01:
+      item: nas-01
+      category: Host
+      specs: "TrueNAS Scale \u2014 NAS + Plex/QuickSync + *arr + torrent/VPN"
+      notes: "NAS/media \u2014 12100/H610/9300-8i/6 drives"
+      tags:
+      - host
+    compute-01:
+      item: compute-01
+      category: Host
+      specs: "Proxmox VE \u2014 VMs/dev, IaC playground"
+      notes: "Compute \u2014 13500/B760I/32GB"
+      tags:
+      - host
+    edge-01:
+      item: edge-01
+      category: Host
+      specs: "OPNsense \u2014 edge firewall/router, VLANs"
+      notes: "Edge \u2014 G3 SFF + quad GbE"
+      tags:
+      - host
+    util-01:
+      item: util-01
+      category: Host
+      specs: Pi-hole/AdGuard + monitoring
+      notes: "Utility \u2014 G4 Mini"
+      tags:
+      - host
+    util-02:
+      item: util-02
+      category: Host
+      specs: Monitoring / spare
+      notes: "Utility \u2014 G4 Mini"
+      tags:
+      - host
+    util-03:
+      item: util-03
+      category: Host
+      specs: Tailscale exit / sandbox
+      notes: "Utility \u2014 NUC"
+      tags:
+      - host
   children:
     CPU:
       hosts:
-        intel-core-i5-13500: {}
         amd-ryzen-7-5800x: {}
         intel-core-i3-12100: {}
-    Motherboard:
+        intel-core-i5-13500: {}
+    ai:
       hosts:
-        jginyue-b760i-gaming-wifi: {}
-        gigabyte-aorus-ultra: {}
-        asus-prime-h610: {}
-    RAM:
-      hosts:
-        corsair-vengeance-ddr4: {}
-        corsair-vengeance-ddr4-2: {}
-        hp-prodesk-600-g4-mini-ram: {}
-        hp-prodesk-600-g3-sff-ram: {}
-    NIC:
-      hosts:
-        intel-x540-dual-10gbe-nic: {}
-        supermicro-aoc-sg-i4: {}
-    Case:
-      hosts:
-        phanteks-evolv-x2: {}
-        phanteks-p500a: {}
-        thermalright-tower-300: {}
-    Host:
-      hosts:
-        opnsense-g3: {}
-        mhv-main-hypervisor: {}
-        main-media-server: {}
-        nuc-i5: {}
-        g4-mini: {}
-        i3-nas: {}
-        wgr: {}
-        tv-hue-bridge: {}
-    OPNsense:
-      hosts:
-        opnsense-g3: {}
-    proxmox:
-      hosts:
-        mhv-main-hypervisor: {}
-        nuc-i5: {}
-        g4-mini: {}
-    media:
-      hosts:
-        main-media-server: {}
+        amd-ryzen-7-5800x: {}
+        gigabyte-aorus-ultra-x570: {}
+        corsair-vengeance-ddr4-64gb-kit: {}
+        evga-ftw3-rtx-ultra-3080: {}
+        intel-x540-10gbe-nic-single: {}
+        phanteks-evolv-x: {}
+        corsair-rm850: {}
+        ai-box: {}
     nas:
       hosts:
-        i3-nas: {}
-    workstation:
+        intel-core-i3-12100: {}
+        asus-prime-h610: {}
+        ddr4-16gb-kit-2x8gb: {}
+        intel-x540-dual-10gbe-nic: {}
+        phanteks-p500a: {}
+        powerman-500w: {}
+        inspur-lsi-9300-8i: {}
+        mini-sas-hd-sff-8643-to-4x-sata-forward-breakout: {}
+        minisas-sff-8643-to-sff-8482-sas-fanout: {}
+        wd-red-1tb-sata-hdd-1: {}
+        wd-red-1tb-sata-hdd-2: {}
+        wd-red-1tb-sata-hdd-3: {}
+        wd-red-1tb-sata-hdd-4: {}
+        wd-blue-3tb-sata-hdd: {}
+        emc-data-domain-4tb-sas: {}
+        nas-01: {}
+    compute:
       hosts:
-        wgr: {}
-    IoT:
+        intel-core-i5-13500: {}
+        jginyue-b760i-gaming-wifi: {}
+        corsair-vengeance-ddr4-32gb-kit: {}
+        intel-x540-10gbe-nic-single-2: {}
+        lian-li-tu-150: {}
+        esgaming-500w: {}
+        compute-01: {}
+    Motherboard:
       hosts:
-        tv-hue-bridge: {}
+        gigabyte-aorus-ultra-x570: {}
+        asus-prime-h610: {}
+        jginyue-b760i-gaming-wifi: {}
+    RAM:
+      hosts:
+        corsair-vengeance-ddr4-64gb-kit: {}
+        corsair-vengeance-ddr4-32gb-kit: {}
+        ddr4-16gb-kit-2x8gb: {}
+    Graphics Card:
+      hosts:
+        evga-ftw3-rtx-ultra-3080: {}
+    NIC:
+      hosts:
+        intel-x540-10gbe-nic-single: {}
+        intel-x540-10gbe-nic-single-2: {}
+        intel-x540-dual-10gbe-nic: {}
+        supermicro-aoc-sg-i4: {}
+    edge:
+      hosts:
+        supermicro-aoc-sg-i4: {}
+        hp-prodesk-600-g3-sff: {}
+        edge-01: {}
+    Case:
+      hosts:
+        phanteks-evolv-x: {}
+        phanteks-p500a: {}
+        lian-li-tu-150: {}
+        thermaltake-tower-300: {}
+        4-bay-nas-case: {}
+    spare:
+      hosts:
+        thermaltake-tower-300: {}
+        4-bay-nas-case: {}
+        thermaltake-pcie-3.0-x16-riser-w-m.2-adapter: {}
+    PSU:
+      hosts:
+        corsair-rm850: {}
+        powerman-500w: {}
+        esgaming-500w: {}
+    HBA:
+      hosts:
+        inspur-lsi-9300-8i: {}
+    Cable:
+      hosts:
+        mini-sas-hd-sff-8643-to-4x-sata-forward-breakout: {}
+        minisas-sff-8643-to-sff-8482-sas-fanout: {}
+        thermaltake-pcie-3.0-x16-riser-w-m.2-adapter: {}
+    Drive:
+      hosts:
+        wd-red-1tb-sata-hdd-1: {}
+        wd-red-1tb-sata-hdd-2: {}
+        wd-red-1tb-sata-hdd-3: {}
+        wd-red-1tb-sata-hdd-4: {}
+        wd-blue-3tb-sata-hdd: {}
+        emc-data-domain-4tb-sas: {}
+    Prebuilt:
+      hosts:
+        hp-prodesk-600-g4-mini-1: {}
+        hp-prodesk-600-g4-mini-2: {}
+        hp-prodesk-600-g3-sff: {}
+        intel-nuc-i3fnhn: {}
+    utility:
+      hosts:
+        hp-prodesk-600-g4-mini-1: {}
+        hp-prodesk-600-g4-mini-2: {}
+        intel-nuc-i3fnhn: {}
+        util-01: {}
+        util-02: {}
+        util-03: {}
+    Host:
+      hosts:
+        ai-box: {}
+        nas-01: {}
+        compute-01: {}
+        edge-01: {}
+        util-01: {}
+        util-02: {}
+        util-03: {}
